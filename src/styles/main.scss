@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&family=Readex+Pro:wght@300&family=Sedgwick+Ave&display=swap');
+
+@import './tier-form-itself.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-website {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background: url(../images/tier-list-page-bgc.png) 50%;
+    animation: infinite 125s slider_;
+}
+
+@keyframes slider_ {
+ 0% {
+    background-position-x: -9999%;
+ }
+
+ 100% {
+    background-position-x: 0%;
+ }
+}
+
+.blur {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: #000000c7;
+}
+
+.header-title {
+    text-align: center;
+    font: 800 68px 'Heebo', sans-serif;
+    color: #f07b4c;
+    z-index: 2;
+}
+
+.random-desc-itself {
+    text-align: center;
+    font: 700 18px 'Sedgwick Ave', cursive;
+    color: #a8cc08;
+    z-index: 2;
+}
+
+.loading-block {
+    position: relative;
+    align-self: center;
+    height: 60px;
+}
+
+.loading-block span {
+    margin: 70px;
+}
+
+.finder-component {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.finder-component label {
+    align-self: center;
+    color: #8edb35;
+    font: 700 26px 'Sedgwick Ave'
+}
+
+.finder-itself {
+    position: relative;
+    display: block;
+    margin: 35px 15px;
+    height: 60px;
+}
+
+.finder-button {
+    position: relative;
+    align-self: center;
+    margin: -3.5px 10px 0 5px;
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    border: none;
+    font: 700 26px 'Sedgwick Ave', cursive;
+}
