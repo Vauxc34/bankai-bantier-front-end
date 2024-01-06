@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom' 
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage, app } from './config';
 
 /* components */
 
@@ -12,23 +14,75 @@ import TierExtend from './parts/TierExtend'
 const CreateTierForm = () => {
 
   const [actualStep, setActualStep]= useState(0)
-  const [IdList, setIdList] = useState(Math.floor(Math.random() * 99999999))
+  const [IdList, setIdList] = useState(Math.floor(Math.random() * 9999))
   const [TierName, setTierName] = useState('')
   const [TierDesc, setTierDesc] = useState('')
   const [TierCategory, setTierCategory] = useState('Nie wybrano') 
+  const [Image, setImage] = useState('')  
 
-  /*const HandleCreatedList = async () => {
-    await setDoc(doc(db, `tier-listy/${IdList}`), {
-      IdList: IdList,
-      TierName: TierName,
-      TierCategory: TierCategory,
-    })
-    HandleStepChange()
-  }
+   const HandleCreatedList = () => {
+
+    const requestOptions = { 
+     
+  method: 'POST',
+  headers: { 
+    'Content-Type': 'application/json',
+   },
+  body: JSON.stringify(
+    
+    {
+    "id": IdList,
+    "name": TierName,
+    "category": TierCategory,
+    "blocks":   [
+        {"title":"SAMPLE BLOCK #1","description":"SAMPLE DESCRIPTION #1","image":"https://static.thenounproject.com/png/275465-200.png"},
+        {"title":"SAMPLE BLOCK #2","description":"SAMPLE DESCRIPTION #2","image":"https://static.thenounproject.com/png/275465-200.png"},
+        {"title":"SAMPLE BLOCK #3","description":"SAMPLE DESCRIPTION #3","image":"https://static.thenounproject.com/png/275465-200.png"}
+    ] 
+    }
+
+
+)
+  };
+
+  fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/`, requestOptions)
+  .then(response => console.log(response.json()))
   
-  const HandleStepChange = () => {
-    setActualStep(1)
-  }*/
+  setActualStep(2)
+
+   } 
+
+  const SendAPhoto = () => {
+
+    const ImgName = Math.floor(Math.random() * 500) + Image
+    const storage = getStorage(app);
+    const storageRef = ref(storage, ImgName);
+    const uploadTask = uploadBytesResumable(storageRef, Image);
+
+    uploadTask.on('state_changed', 
+    (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case 'paused':
+          console.log('Upload is paused');
+          break;
+        case 'running':
+          console.log('Upload is running');
+          break;
+      }
+    }, 
+    (error) => {
+     
+    }, 
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+        setImage(downloadURL)
+      });
+    }
+  );
+  }  
 
   return (
   <>
@@ -43,16 +97,18 @@ const CreateTierForm = () => {
     setTierDesc={setTierDesc}
     TierCategory={TierCategory}
     setTierCategory={setTierCategory}
-    //HandleCreatedList={HandleCreatedList}
-    setActualStep={setActualStep} 
-    //HandleStepChange={HandleStepChange}
+    HandleCreatedList={HandleCreatedList}
+    setActualStep={setActualStep}  
     /> : 
-    <TierFormPart2
+    <TierFormPart2  
     IdList={IdList}
     setIdList={setIdList}
     TierName={TierName}
     TierDesc={TierDesc}
     TierCategory={TierCategory}
+    Image={Image}
+    setImage={setImage}
+    SendAPhoto={SendAPhoto}
     />}
     
     </div>
