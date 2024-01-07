@@ -3,29 +3,38 @@ import { useLocation } from 'react-router-dom';
 import TierBlockPanelItself from './TierBlockPanelItself';
 import TierBlockItself from './TierBlockItself';
 
-const TierListItself = () => {
+const TierListItself = ({ IdList }) => {
 
-  const [TierItem, setTierItem] = useState([])
-
+  const [ActualList, setActualList] = useState([])
+  const [ActualBlocksList, setActualBlocksList] = useState('[{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}]')
   const location = useLocation()
 
-  //const docRef = doc(db,`tier-listy/${location.pathname.split('/')[2]}` );
+  const FetchActualList = () => {
 
-  /*useEffect(() => {
     
-    const GetTierElements = async () => {
-      try {
 
-        const docSnap = await getDoc(docRef);
-        setTierItem(docSnap.data().AllTierBlocks)
+    const requestOptions = { 
+     
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json', 
+       },
+       
+        }
 
-      } catch {
 
-      }
-    } 
+      fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions).then(response =>  response.json()).then(data => setActualBlocksList(data.list.blocks))
+ 
+   
+       
+       
+  }
 
-    GetTierElements()
-  }, [])*/
+  useEffect(() => {
+    FetchActualList()
+  },[])
+
+  let Rest = JSON.parse(ActualBlocksList)
 
   return (
   <>
@@ -54,25 +63,30 @@ const TierListItself = () => {
     
     
     <div className='tier-panel-choosing'>
-    <TierBlockPanelItself id="board-1" className="board">    
+    <TierBlockPanelItself id="board-1" className="board">
 
-    {TierItem.map((item, key) => (
+
+        {ActualBlocksList == '[{ "id": 900,"name": "teshiu","category": "chdcuj","blocks": [{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"} ]}]' 
+     ?  "null" : 
+     Rest.map((item, key) => <>
       
-      <TierBlockItself key={key} className="tier-block" id={`tier-${item.BlockId}`} draggable="true">
-      <div style={{ background: `url(${item.img}) 50% 50% no-repeat`, backgroundSize: '140px' }} className='tier-image'></div>
-      <p>{item.BlockName}</p>
+      <TierBlockItself  key={key} className="tier-block" id={`${Math.floor(Math.random() * 500)}`} draggable="true">
+      <div style={{ background: `url(${item.image}) 50% 50% no-repeat`, backgroundSize: '140px' }} className='tier-image'></div>
+      <p>{item.title}</p>
       </TierBlockItself>
+
+      </>    
       
-    ))}
+    )}
 
 
     </TierBlockPanelItself>
 
 
+    {/*<TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
     <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
     <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+  <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>*/}
     </div>
 
   </>

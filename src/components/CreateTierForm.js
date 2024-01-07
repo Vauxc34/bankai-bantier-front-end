@@ -6,8 +6,7 @@ import { storage, app } from './config';
 /* components */
 
 import TierFormPart1 from './parts/TierFormPart1'
-import TierFormPart2 from './parts/TierFormPart2'
-import TierExtend from './parts/TierExtend'
+import TierFormPart2 from './parts/TierFormPart2' 
 
 /* components */
 
@@ -21,8 +20,7 @@ const CreateTierForm = () => {
   const [Image, setImage] = useState('')  
 
    const HandleCreatedList = () => {
-
-    const requestOptions = { 
+  const requestOptions = { 
      
   method: 'POST',
   headers: { 
@@ -44,15 +42,12 @@ const CreateTierForm = () => {
 
 )
   };
-
   fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/`, requestOptions)
-  .then(response => console.log(response.json()))
-  
+  .then(response => response.json())
   setActualStep(2)
-
    } 
-
-  const SendAPhoto = () => {
+  
+   const SendAPhoto = () => {
 
     const ImgName = Math.floor(Math.random() * 500) + Image
     const storage = getStorage(app);
@@ -82,12 +77,12 @@ const CreateTierForm = () => {
       });
     }
   );
-  }  
+   }  
 
   return (
   <>
     <div className='tier-form-itself'>
-    <TierExtend/>
+     
     {actualStep == 0 ? <TierFormPart1
     IdList={IdList}
     setIdList={setIdList}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation, useHref } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 const TierFormPart1 = ({
@@ -12,12 +13,20 @@ const TierFormPart1 = ({
     HandleCreatedList
 }) => {
 
+  const location = useLocation()
+ 
+
   const TierListCategories = [
-    'Seriale',
-    'Muzyka',
-    'Filmy',
-    'Gry',
+    {opt: 'Nie wybrano', set: "disabled"},
+    {opt: 'Seriale', set: ""},
+    {opt: 'Muzyka', set: ""},
+    {opt: 'Filmy', set: ""},
+    {opt: 'Gry', set: ""},
   ]
+
+  /*const LocationPush = () => {
+    location(`/stworz-tier-liste/${IdList}`)
+  }*/
 
   return (
     (
@@ -37,7 +46,7 @@ className='list-name' type="text"></input>
 <select value={TierCategory} onChange={(e) => setTierCategory(e.target.value)} className='category-selector'>
   {TierListCategories.map(((item) =>
   <>
-     <option>{item}</option>
+     <option disabled={item.set} >{item.opt}</option>
   </>
   ))}
 </select>
@@ -47,7 +56,7 @@ className='list-name' type="text"></input>
 <textarea
 value={TierDesc}
 onChange={(e) => setTierDesc(e.target.value)}
-className='list-desc'/>
+className='list-desc'/> 
 
 <Link to={`/stworz-tier-liste/${IdList}`}>
 <input onClick={HandleCreatedList} className='create-list-btn' type="submit" value='stwórz!'/>

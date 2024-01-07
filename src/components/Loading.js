@@ -37,8 +37,6 @@ export default function Loading() {
     )
   }
 
-  console.log(isFinderOn)
-
   return (
   <>
   
@@ -46,7 +44,7 @@ export default function Loading() {
     <p className='random-desc-itself'>tutaj będzie randomowy tekst generowany przez jakieś API</p>
 
       <div className='loading-block'>
-      <Link to="/stworz-tier-liste/:tworzenie-listy">
+      <Link to="/stworz-tier-liste/twoja-nowa-lista">
       <input style={{ zIndex: 999 }} type="submit" className='create-list-btn' value="Przejdź do kreatora list" />
       </Link>
       {finder}

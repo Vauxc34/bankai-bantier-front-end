@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react'   
-import { useNavigate, useLocation, Link } from 'react-router-dom' 
-import FileUploader from "react-firebase-file-uploader";  
+import { useNavigate, useLocation, Link } from 'react-router-dom'  
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, app } from '../config';
 
 
-const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setImage, SendAPhoto }) => {
-
+const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image }) => {
+  
+  const [file, setFile] = useState("")
+  const [percent, setPercent] = useState(0);
   const [ActualBlocks, setActualBlocks] = useState('[{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}]')
   const [Title, setTitle] = useState('')
   const [Description, setDescription] = useState('') 
-
-  const [newAddedBlocks, setNewAddedBlocks] = useState([
-    {"title":"SAMPLE BLOCK #1","description":"SAMPLE DESCRIPTION #1","image":"https://static.thenounproject.com/png/275465-200.png"},
-    {"title":"SAMPLE BLOCK #2","description":"SAMPLE DESCRIPTION #2","image":"https://static.thenounproject.com/png/275465-200.png"},
-    {"title":"SAMPLE BLOCK #3","description":"SAMPLE DESCRIPTION #3","image":"https://static.thenounproject.com/png/275465-200.png"}
-  ]) 
-
+  const [imageToShow, setImageToShow] = useState('https://static.thenounproject.com/png/275465-200.png')
+  const [newAddedBlocks, setNewAddedBlocks] = useState([]) 
   const location = useLocation()
 
   useEffect(() => {
@@ -35,9 +31,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
     .then(res => res.json()).then(res => setActualBlocks(res.list.blocks));
 
   }, [])
-
-  let Rest = JSON.parse(ActualBlocks)
-
+ 
   const CreateList2 = () => {
 
     const requestOptions = { 
@@ -49,9 +43,6 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
       body: JSON.stringify(
         
         {
-        "id": IdList,
-        "name": TierName,
-        "category": TierCategory,
         "blocks": newAddedBlocks
         }
     
@@ -59,38 +50,34 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
     )
       }; 
     
-      fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/`, requestOptions)
-      .then(response => console.log(response.json()))  
+      fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions)
+      .then(response => response.json()).then(data => console.log(data)).then(fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, { 
+     
+        method: 'GET',
+        headers: { 
+          'Content-Type': 'application/json', 
+         },
+         
+          }).then(res => res.json()).then(data => console.log(data)))
   }
 
   const AddNewBlockToArray = () => {
-    const newArray = newAddedBlocks.concat({"title":`${Title}`,"description":`${Description}`,"image":`${Image}`});
+    const newArray = newAddedBlocks.concat({"title":`${Title}`,"description":`${Description}`,"image":`${imageToShow}`});
     setNewAddedBlocks(newArray)}
-
-  console.log(newAddedBlocks) 
  
-  // State to store uploaded file
-  const [file, setFile] = useState("");
-
-  // progress
-  const [percent, setPercent] = useState(0);
-
-  // Handle file upload event and update state
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
 
-  const storageRef = ref(storage, `/profileImage/${file.name}`);
+  const storage = getStorage(); 
+  const storageRef = ref(storage, `/itier-additional-photos/${file.name}`);
 
   const handleUpload = () => {
     if (!file) {
       alert("Please upload an image first!");
     }
 
-   
-
-    // progress can be paused and resumed. It also exposes progress updates.
-    // Receives the storage reference and the file to upload.
+    
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -99,19 +86,18 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        alert("File uploaded...");
-        // update progress
+        //alert("File uploaded..."); 
         setPercent(percent);
       },
       (err) => console.log(err),
-      () => {
-        // download url
+      () => { 
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
+          setImageToShow(url)
         });
       }
     );
-  };
+  }; 
  
   return (
     <>
@@ -120,34 +106,26 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
 
 <div className='addon-panel'>
 
-<div className='tier-addons'>
+    <div className='tier-addons'>
       <label>#NOWY KLOCEK</label>
       <input type="text" placeholder='999' value={Title} onChange={(e) => setTitle(e.target.value)} required />
  
       <label>Zdjęcie</label>  
 
-
-      <div>
-      <input type="file" onChange={handleChange} accept="/profileImage/*" />
-      <button onClick={handleUpload}>Upload to Firebase</button>
-      <p>{percent} "% done"</p>
-    </div>
-
-
         <div for="img-selector" className='thumbnail-container'>
-          <img className='thumbnail-itself' src={Image}/>
+          <img className='thumbnail-itself' src={imageToShow}/>
           <input 
           className="img-selector"
           style={{ position: 'absolute' }}
           type="file" 
-           
-          onChange={(e) => { 
-            setImage(e.target.files[0]);
-          }}
+          onChange={handleChange} 
+          accept="any"
+
+          //accept="/profileImage/*"
         />
         </div> 
 
-        <input onClick={SendAPhoto} className='send-picture' type="submit" value="Prześlij obrazek 📷"/>
+        <input onClick={handleUpload}  className='send-picture' type="submit" value="Prześlij obrazek 📷"/>
          
 
       <label>Klasyfikacja</label>
@@ -159,10 +137,9 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
     </div>
     
     
-    {ActualBlocks == '[{ "id": 900,"name": "teshiu","category": "chdcuj","blocks": [{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"} ]}]' 
-     ?  "null" : 
-     Rest.map((item, key) => <>
-     <div key={key} className='tier-addons'>
+     {newAddedBlocks == [] ? "" : newAddedBlocks.map((item, key) => <>
+     
+      <div key={key} className='tier-addons'>
       <label>#{item.title}</label>
       <input type="text" placeholder={item.title} required />
  
@@ -183,19 +160,21 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, setIma
       <input type="text" placeholder="B" required />
 
       
-    </div>
-     </>)} 
+      </div>
 
-  </div>
+     </>)}
+
+    </div>
 
       <div/>
 
     </div>
     <div>
 
-    <Link to={`/tier-lista/${location.pathname.split('/')[2]}`}>
+    <Link to={`/tier-lista/${IdList}`}>
     <input onClick={CreateList2} className='create-list-btn' type="submit" value='Przejdź do twojej listy'/>
     </Link>
+     
 
     </div>
     
