@@ -24,15 +24,11 @@ const TierFormPart1 = ({
     {opt: 'Gry', set: ""},
   ]
 
-  /*const LocationPush = () => {
-    location(`/stworz-tier-liste/${IdList}`)
-  }*/
-
   return (
     (
     <>
 
-<h1 className='header-title'>iTier</h1>
+<h1 className='header-title'>Kreator list</h1>
 
 <label>nazwa listy</label>
 

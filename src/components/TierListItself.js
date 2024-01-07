@@ -10,9 +10,6 @@ const TierListItself = ({ IdList }) => {
   const location = useLocation()
 
   const FetchActualList = () => {
-
-    
-
     const requestOptions = { 
      
       method: 'GET',
@@ -20,14 +17,8 @@ const TierListItself = ({ IdList }) => {
         'Content-Type': 'application/json', 
        },
        
-        }
-
-
-      fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions).then(response =>  response.json()).then(data => setActualBlocksList(data.list.blocks))
- 
-   
-       
-       
+    }
+    fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions).then(response =>  response.json()).then(data => setActualBlocksList(data.list.blocks))
   }
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TierBlockPanelItself(props) {
 
-    const drop = e => {
+      const drop = e => {
         e.preventDefault();
         const tier_block_id = e.dataTransfer.getData('tier_block_id')
     

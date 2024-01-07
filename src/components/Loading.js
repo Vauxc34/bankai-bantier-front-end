@@ -47,7 +47,10 @@ export default function Loading() {
       <Link to="/stworz-tier-liste/twoja-nowa-lista">
       <input style={{ zIndex: 999 }} type="submit" className='create-list-btn' value="Przejdź do kreatora list" />
       </Link>
-      {finder}
+
+      <Link to="/znajdz-liste/">
+      <input style={{ zIndex: 999 }}  type="submit" className='create-list-btn' value="Znajdź swoją tier listę" />
+      </Link> 
 
       </div>
 

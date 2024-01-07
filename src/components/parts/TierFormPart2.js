@@ -35,30 +35,16 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image }) => {
   const CreateList2 = () => {
 
     const requestOptions = { 
-     
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json', 
-       },
-      body: JSON.stringify(
-        
-        {
-        "blocks": newAddedBlocks
-        }
-    
-    
-    )
-      }; 
-    
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify({ "blocks": newAddedBlocks })}; 
       fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions)
       .then(response => response.json()).then(data => console.log(data)).then(fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, { 
-     
         method: 'GET',
         headers: { 
           'Content-Type': 'application/json', 
          },
-         
-          }).then(res => res.json()).then(data => console.log(data)))
+      }).then(res => res.json()).then(data => console.log(data)))
   }
 
   const AddNewBlockToArray = () => {
