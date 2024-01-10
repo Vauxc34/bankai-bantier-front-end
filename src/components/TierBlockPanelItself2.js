@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TierBlockPanelItself(props) {
+export default function TierBlockPanelItself2(props) {
 
       const drop = e => {
         e.preventDefault();
@@ -23,8 +23,8 @@ export default function TierBlockPanelItself(props) {
     id={props.id}
     onDrop={drop}
     onDragOver={dragOver} 
-    style={{ minHeight: '90px', flexGrow: 2 }}
-    className='block-panel -first-panel- block-appear'> { props.children } 
+    style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }} 
+    className='block-panel -first-panel-'> { props.children } 
     </div>
     </>
   );

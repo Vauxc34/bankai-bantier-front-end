@@ -15,6 +15,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 
 /* mui */
 
@@ -57,8 +58,6 @@ useEffect(() => {
         </TableHead>
         <TableBody>
           {TableOfLists == [] ? "null " : <>
-          
-
 { TableOfLists.map((row) => (
 
 <TableRow
@@ -71,7 +70,7 @@ sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 <TableCell align="right"> 
 
 <Link to={`/tier-lista/${row.id}`}>
-<Button variant="contained" color="error">
+<Button color="secondary" variant="contained">
   Sprawdz liste
 </Button>
 </Link>
