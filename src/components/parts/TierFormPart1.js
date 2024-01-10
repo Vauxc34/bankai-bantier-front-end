@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField'; 
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
@@ -32,6 +33,12 @@ const TierFormPart1 = ({
     {opt: 'Filmy', set: ""},
     {opt: 'Gry', set: ""},
   ]
+
+  console.log(TierName)
+  console.log(TierCategory)
+  console.log(TierDesc)
+
+  //!= '' && TierCategory != 'Nie wybrano' && TierDesc
 
   return (
     (
@@ -74,11 +81,13 @@ onChange={(e) => setTierDesc(e.target.value)}/>
  
 </div> 
 
-<Link to={`/stworz-tier-liste/${IdList}`}>
-<Button onClick={HandleCreatedList} sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}>
+{TierName == '' || TierCategory == 'Nie wybrano' || TierDesc == '' ? <Button sx={{ margin: '15px' }} variant="contained" color='error' startIcon={<ErrorOutlineIcon />}>
+Nie uzupelniles pol
+</Button> : <Link to={`/stworz-tier-liste/${IdList}`}>
+<Button onClick={HandleCreatedList} sx={{ margin: '15px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}>
 Stworz wlasna liste
 </Button>
-</Link>
+</Link>}
 
     </>
     )

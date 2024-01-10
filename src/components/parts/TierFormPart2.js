@@ -3,7 +3,6 @@ import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, app } from '../config';
 
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -14,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
@@ -24,9 +24,9 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
   
   const [file, setFile] = useState("")
   const [percent, setPercent] = useState(0);
-  const [ActualBlocks, setActualBlocks] = useState('[{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}]')
+  const [ActualBlocks, setActualBlocks] = useState('')
   const [Title, setTitle] = useState('')
-  const [Description, setDescription] = useState('') 
+  const [Description, setDescription] = useState('S') 
   const [imageToShow, setImageToShow] = useState('https://static.thenounproject.com/png/275465-200.png')
   const [newAddedBlocks, setNewAddedBlocks] = useState([]) 
   const location = useLocation()
@@ -184,7 +184,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
  fullWidth required  variant="filled"  />
 
           </div>
-      <FormControl style={{ margin: '5px' }}>
+        <FormControl style={{ margin: '5px' }}>
   <InputLabel className="site-label"></InputLabel>
   <Select 
     labelId="demo-simple-select-label"
@@ -200,7 +200,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
   <MenuItem value={'D'} >D</MenuItem>
   <MenuItem value={'F'} >F</MenuItem>
   </Select>
-      </FormControl>  
+        </FormControl>  
         </div>     
         <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}> 
           <ImageButton focusRipple  style={{  width: '100%', }}  >
@@ -231,10 +231,10 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
           </ImageButton> 
         </Box> 
         <div className='container-flex'>
-        <Button onClick={FileUploader}  sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CameraAltIcon />}>Wyslij zdjecie</Button>
-      <Button onClick={AddNewBlockToArray}  sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<AddIcon />}>Dodaj klocka</Button>
+        {file == '' ? <Button  sx={{ margin: '10px' }} variant="contained" color='error' startIcon={<ErrorOutlineIcon />}>Brak zdjecia</Button> : <Button onClick={FileUploader}  sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CameraAltIcon />}>Wyslij zdjecie</Button>}
+        <Button onClick={AddNewBlockToArray}  sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<AddIcon />}>Dodaj klocka</Button>
         </div>
-    </div>
+      </div>
     
      {newAddedBlocks == [] ? "" : newAddedBlocks.map((item, key) => <>
      
@@ -284,11 +284,16 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
     </div>
     <div>
 
+{ActualBlocks == '' ? <Button sx={{ margin: '15px' }} variant="contained" color='error' startIcon={<ErrorOutlineIcon />}>
+Nie dodano klockow
+</Button> : 
 <Link to={`/tier-lista/${IdList}`}>
-<Button onClick={CreateList2}  sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<MeetingRoomIcon />}>
+<Button onClick={CreateList2}  sx={{ margin: '15px' }} variant="contained" color='secondary' startIcon={<MeetingRoomIcon />}>
 Przejdź do nowo utworzonej listy
 </Button>
-</Link>
+</Link>}
+
+
 
     </div>
     
