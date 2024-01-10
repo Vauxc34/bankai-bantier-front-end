@@ -23,7 +23,7 @@ export default function TierBlockPanelItself2(props) {
     id={props.id}
     onDrop={drop}
     onDragOver={dragOver} 
-    style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }} 
+    style={{ flexWrap: 'wrap' }} 
     className='block-panel -first-panel-'> { props.children } 
     </div>
     </>

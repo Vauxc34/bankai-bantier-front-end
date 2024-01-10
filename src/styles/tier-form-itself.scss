@@ -1,5 +1,3 @@
-
-
 .tier-form-itself {
     position: relative;
     display: flex;
@@ -12,7 +10,8 @@
     border: 1px solid #B451D7;
     background: #1f1f1f7a;
     overflow: hidden;
-    margin: 25px;
+    margin: 10px;
+    padding: 25px;
     z-index: 2;
 }
 
@@ -130,9 +129,7 @@ cursor: pointer;
 .tier-list-itself {
     position: relative;
     display: flex;
-    align-self: center; 
-    border-radius: 15px;
-    border: 2px solid #fff;
+    align-self: center;  
     background: #1f1f1f7a;
     -webkit-box-shadow: 0px 0px 15px 5px #000000; 
     box-shadow: 0px 0px 15px 5px #000000;
@@ -153,22 +150,18 @@ cursor: pointer;
 .blocks-panel {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    align-self: flex-start;
-    width: 120px;
+    align-self: center;
     height: 100vh;
-    background: #fff;
-    border-radius: 15px 0 0 15px;
+    background: #fff; 
 }
 
-.-first-panel- {
-    border-radius: 0 15px 0 0;
+.-first-panel- { 
 }
 
-.-last-panel- {
-    border-radius: 0 0 15px 0;
+.-last-panel- { 
 }
 
 .block-itself {
@@ -177,27 +170,24 @@ cursor: pointer;
     align-items: center;
     position: relative;
     padding: 20px;
-    width: 100%;
-    font: 700 xx-large 'Heebo', sans-serif;
-    flex-grow: 2; 
+    width: 130px;
+    font: 700 xx-large 'Heebo', sans-serif; 
     color: #fff;
     background: linear-gradient(#dd1111ec, #880000e8);
 }
 
 .block-appear .tier-block {
-    height: unset;
+    height: 100px;
+    width: 100px;
 }
 
 .block-panel {
     position: relative;
-    display: flex;
-
-    height: 12vh;
+    display: flex; 
     background: linear-gradient(#0c0b0bb0 75%, #000);
 }
 
-.-first {
-    border-radius: 15px 0 0 0 ;
+.-first { 
 }
 
 .-second {
@@ -220,8 +210,7 @@ cursor: pointer;
     background: linear-gradient(#c50f8f, #500238);
 }
 
-.-last {
-    border-radius: 0 0 0 15px ;
+.-last { 
     background: linear-gradient(#6804b9, #2e0352);
 }
 
@@ -240,15 +229,26 @@ cursor: pointer;
     z-index: 2;
 }
 
+@media (max-width: 599px) {
+    
+    .tier-panel-choosing {
+        position: absolute;
+        height: 500px;
+        width: 100%;
+         
+    }
+
+}
+
 .tier-block {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 12vh;
-    width: 12vh;
-    background: linear-gradient(#fdfdfd, #dfdfdf52);
+    height: 100px;
+    width: 100px;
+    background: #6b6b6b;
     color: white;
     text-align: center;
     font: 500 12px uppercase;

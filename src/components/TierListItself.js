@@ -7,7 +7,7 @@ import TierBlockItself from './TierBlockItself';
 const TierListItself = ({ IdList }) => {
 
   const [ActualList, setActualList] = useState([])
-  const [ActualBlocksList, setActualBlocksList] = useState('[{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}]')
+  const [ActualBlocksList, setActualBlocksList] = useState('[{"title":"SAMPLE BLOCK #1","description":"A","image":"https://placehold.co/100x100/black/white/?font=roboto"}, {"title":"SAMPLE BLOCK #2","description":"B","image":"https://placehold.co/100x100/black/white/?font=roboto"}, {"title":"SAMPLE BLOCK #3","description":"C","image":"https://placehold.co/100x100/black/white/?font=roboto"}]')
   const location = useLocation()
 
   const FetchActualList = () => {
@@ -34,34 +34,48 @@ const TierListItself = ({ IdList }) => {
     <div className='huge-container'>
     <div className='tier-list-itself'>
     <div className='blocks-panel'>
-    <div className='block-itself -first' >S</div>
-    <div className='block-itself -second' >A</div>
-    <div className='block-itself -third' >B</div>
-    <div className='block-itself -fourth' >C</div>
-    <div className='block-itself -fifth' >D</div>
-    <div className='block-itself -six' >E</div>
-    <div className='block-itself -last' >F</div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+        <div className='block-itself -first' >S</div>
+        <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -second' >A</div>
+      <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -third' >B</div>
+      <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -fourth' >C</div>
+      <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -fifth' >D</div>
+      <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div> 
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -six' >E</div>
+     <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+      <div className='container-flex' style={{ height: '100px', width: '100vw' }} >
+      <div className='block-itself -last' >F</div>
+    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
+      </div>
+   
     </div>
-    <div className='tier-block-panel'>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    <TierBlockPanelItself id="board-1" className="board"></TierBlockPanelItself>
-    </div>
+    
     </div>
     
     <div className='tier-panel-choosing'>
     <TierBlockPanelItself2 id="board-1" className="board">
-      {ActualBlocksList == '[{ "id": 900,"name": "teshiu","category": "chdcuj","blocks": [{"title":"testowo11","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul21","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"}, {"title":"ciul45","description":"lorem ipsum","image":"https://fwcdn.pl/ppo/92/57/179257/466970.2.jpg"} ]}]' 
+      {ActualBlocksList == '[{"title":"SAMPLE BLOCK #1","description":"A","image":"https://placehold.co/100x100/black/white/?font=roboto"}, {"title":"SAMPLE BLOCK #2","description":"B","image":"https://placehold.co/100x100/black/white/?font=roboto"}, {"title":"SAMPLE BLOCK #3","description":"C","image":"https://placehold.co/100x100/black/white/?font=roboto"}]' 
       ?  "null" : 
       Rest.map((item, key) => <>
       
       <TierBlockItself  key={key} className="tier-block" id={`${Math.floor(Math.random() * 500)}`} draggable="true">
       <div style={{ background: `url(${item.image}) 50% 50% no-repeat`, backgroundSize: '140px' }} className='tier-image'></div>
-      <p>{item.title}</p>
+      <label>{item.title}</label>
       </TierBlockItself>
 
       </>    

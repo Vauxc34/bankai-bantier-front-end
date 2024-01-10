@@ -11,6 +11,7 @@ import TierFormPart1 from './parts/TierFormPart1'
 import TierFormPart2 from './parts/TierFormPart2' 
 
 /* components */
+ 
 
 const CreateTierForm = () => {
 
@@ -20,6 +21,7 @@ const CreateTierForm = () => {
   const [TierDesc, setTierDesc] = useState('')
   const [TierCategory, setTierCategory] = useState('Nie wybrano') 
   const [Image, setImage] = useState('')  
+  const [TierlistThumbnail, setTierListThumbnail] = useState('')
 
    const HandleCreatedList = () => {
   const requestOptions = { 
@@ -34,6 +36,8 @@ const CreateTierForm = () => {
     "id": IdList,
     "name": TierName,
     "category": TierCategory,
+    "image": TierlistThumbnail,
+    "description": TierDesc,
     "blocks":   [
         {"title":"SAMPLE BLOCK #1","description":"SAMPLE DESCRIPTION #1","image":"https://static.thenounproject.com/png/275465-200.png"},
         {"title":"SAMPLE BLOCK #2","description":"SAMPLE DESCRIPTION #2","image":"https://static.thenounproject.com/png/275465-200.png"},
@@ -83,7 +87,7 @@ const CreateTierForm = () => {
 
   return (
   <>
-    <div className='tier-form-itself'>
+    <div className='tier-form-itself' style={{ overflowY: 'scroll' }}>
      
     {actualStep == 0 ? <TierFormPart1
     IdList={IdList}
@@ -96,6 +100,9 @@ const CreateTierForm = () => {
     setTierCategory={setTierCategory}
     HandleCreatedList={HandleCreatedList}
     setActualStep={setActualStep}  
+    TierlistThumbnail={TierlistThumbnail}
+    setTierListThumbnail={setTierListThumbnail}
+    toast={toast}
     /> : 
     <TierFormPart2  
     IdList={IdList}

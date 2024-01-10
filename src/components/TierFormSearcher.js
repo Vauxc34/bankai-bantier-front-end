@@ -14,8 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import Button from '@mui/material/Button'; 
 
 /* mui */
 
@@ -42,7 +41,6 @@ useEffect(() => {
   return (
   <>
     <div className='tier-form-itself'>
-    
     <TableContainer component={Paper} sx={{ backgroundColor: "#1f1f1f7a", borderColor: "#212121", color: 'white' }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
          <caption>
@@ -87,8 +85,6 @@ sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         </TableBody>
       </Table>
     </TableContainer>
-
-    
     </div>
   </>
     )

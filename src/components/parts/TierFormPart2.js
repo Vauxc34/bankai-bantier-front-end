@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'   
 import { useNavigate, useLocation, Link } from 'react-router-dom'  
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage, app } from '../config';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; 
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,21 +12,21 @@ import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'; 
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/system';  
+import { styled } from '@mui/system'; 
 
 const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast }) => {
   
   const [file, setFile] = useState("")
   const [percent, setPercent] = useState(0);
   const [ActualBlocks, setActualBlocks] = useState('')
+  const [isNewBlockAdded, setIsNewBlockAdded] = useState(false)
   const [Title, setTitle] = useState('')
   const [Description, setDescription] = useState('S') 
-  const [imageToShow, setImageToShow] = useState('https://static.thenounproject.com/png/275465-200.png')
+  const [imageToShow, setImageToShow] = useState('')
   const [newAddedBlocks, setNewAddedBlocks] = useState([]) 
   const location = useLocation()
 
@@ -65,7 +64,9 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
 
   const AddNewBlockToArray = () => {
     const newArray = newAddedBlocks.concat({"title":`${Title}`,"description":`${Description}`,"image":`${imageToShow}`});
-    setNewAddedBlocks(newArray)}
+    setNewAddedBlocks(newArray)
+    setIsNewBlockAdded(true)
+  }
 
   const storage = getStorage(); 
   const storageRef = ref(storage, `/itier-additional-photos/${file.name}`);
@@ -80,13 +81,14 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        toast.info("File uploaded..."); 
+         
         setPercent(percent);
       },
       (err) => console.log(err),
       () => { 
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
+          toast.info("File uploaded"); 
           setImageToShow(url)
         });
       }
@@ -162,9 +164,12 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
     left: 'calc(50% - 9px)',
     transition: 'ease in',
   }));
- 
+
+
   return (
     <>
+
+<h1 style={{ margin: '15px' }} className='header-title'>JESZCZE TYLKO KLOCKI</h1> 
 
 <div className='tier-items-add-panel' >
 
@@ -236,7 +241,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
         </div>
       </div>
     
-     {newAddedBlocks == [] ? "" : newAddedBlocks.map((item, key) => <>
+     {isNewBlockAdded == [] ? "" : newAddedBlocks.map((item, key) => <>
      
 
       <div key={key} className='tier-addons'>  
@@ -277,17 +282,16 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
 
      </>)}
 
-    </div>
+</div>
 
-      <div/>
+  <div/>
 
     </div>
     <div>
 
-{ActualBlocks == '' ? <Button sx={{ margin: '15px' }} variant="contained" color='error' startIcon={<ErrorOutlineIcon />}>
+{newAddedBlocks == false ? <Button sx={{ margin: '15px' }} variant="contained" color='error' startIcon={<ErrorOutlineIcon />}>
 Nie dodano klockow
-</Button> : 
-<Link to={`/tier-lista/${IdList}`}>
+</Button> : <Link to={`/tier-lista/${IdList}`}>
 <Button onClick={CreateList2}  sx={{ margin: '15px' }} variant="contained" color='secondary' startIcon={<MeetingRoomIcon />}>
 Przejdź do nowo utworzonej listy
 </Button>

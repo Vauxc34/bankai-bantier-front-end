@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
+import CreateIcon from '@mui/icons-material/Create';
 
 /* */
 
 import LogoApp from '../images/logo-bigger-tier.png'
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 /* */
 
@@ -34,6 +36,7 @@ export default function Loading() {
   const [listId, setListId] = useState('')
   const [isFinderOn, setIsFinderOn] = useState(false)
   const [finder, setFinder] = useState(<FindComponentFirst/>)
+  const [ActualLists, setActualLists] = useState([])
 
   const HandleSetFinder = () => {
     setIsFinderOn(!isFinderOn)
@@ -56,6 +59,27 @@ export default function Loading() {
     )
   }
 
+  const GetAllLists = () => {
+
+    const requestOptions = { 
+     
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json', 
+       },
+       
+    }
+    fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists`, requestOptions).then(response =>  response.json()).then(data => setActualLists(data.lists))
+
+  }
+
+
+  useEffect(() => {
+
+    GetAllLists()
+
+  }, [])
+
   return (
   <> 
 
@@ -66,7 +90,7 @@ export default function Loading() {
 
       <div className='container-spaced'>
       <Link to="/stworz-tier-liste/twoja-nowa-lista">
-      <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<SearchIcon />}>
+      <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}>
       Stworz wlasna liste
       </Button>
       </Link> 
@@ -81,7 +105,7 @@ export default function Loading() {
 
       </div>
     
-      {/*<Swiper
+      <Swiper
          style={{ marginRight: 'unset', marginLeft: 'unset' }}
         effect={'fade'}
         navigation={true}
@@ -91,24 +115,48 @@ export default function Loading() {
         modules={[EffectFade, Navigation, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-      </Swiper>*/}
+{ActualLists == [] ? <SwiperSlide>
+          
+          <div className='Slide_of_list' style={{ backgroundImage: `url(${'https://placehold.co/1600x1200'})` }}>
+            
+            <div className='container-text-slider'>
+  
+            <h1>Lorem ipsum</h1>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet tincidunt tellus. Nullam massa enim, vehicula at augue posuere, maximus commodo lectus. Suspendisse porttitor bibendum enim, quis varius massa pulvinar in. Proin ac sapien ac eros sollicitudin euismod id ac nisi.</span>
+  
+            </div>
+  
+            <div className='blur'></div>
+          
+            </div>
+          </SwiperSlide> :  ActualLists.map((item, key) => 
+            <SwiperSlide>
+          
+        <div key={key} className='Slide_of_list' style={{ backgroundImage: `url(${item.image})` }}>
+          
+          <div className='container-text-slider'>
 
-      <div className='loading-block'>
+          <h1>{item.name}</h1>
+          <span>{item.description}</span>
+
+          </div>
+
+          <div className='blur'></div>
+        
+          </div>
+        </SwiperSlide>
+          )
+
+          }
+
+        
+      </Swiper>
+
      
+ 
 
-      </div>
+      <h1 style={{ zIndex: 2, margin: '10px' }} > 
+      <a style={{ color: 'white' }} href="https://github.com/Vauxc34?tab=repositories"><GitHubIcon /></a> Vauxc34</h1>
 
   </>
     );

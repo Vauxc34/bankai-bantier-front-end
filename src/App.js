@@ -15,8 +15,7 @@ const App = () => {
   return (
   <>
   <div className='wrapper'>
-  <div className='main-website'>
-  <div className='blur'></div>
+  <div className='main-website'> 
     
   <Router>
     <Routes>

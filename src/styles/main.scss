@@ -19,6 +19,16 @@ h2 {
     color:  white;
 }
 
+p {
+    font-family: 'Poppins', sans-serif;
+    color:  white;
+}
+
+span {
+    font-family: 'Poppins', sans-serif;
+    color:  white;
+}
+
 label {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
@@ -68,6 +78,64 @@ textarea:focus-visible {
     color: white !important;
 }
 
+.css-1k86apy-MuiImageList-root {
+    overflow-y: unset !important;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
+}
+
+.css-ta95xa-MuiImageListItem-root .MuiImageListItem-img {
+    object-fit: cover;
+    width: 100%;
+    height: 215px !important;
+    display: block;
+    /* -webkit-box-flex: 1; */
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 2;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    color: #B451D7;
+}
+
+.swiper-pagination-bullet-active {
+    background: #B451D7 !important;
+}
+
+.Slide_of_list {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-position: 50% 50%;
+    height: 100vh;
+    width: 100vw;
+}
+
+.Slide_of_list h1 { 
+    position: absolute;
+    top: -35px;
+    right: 10px;
+}
+
+.Slide_of_list span {
+    position: absolute;
+    color: white; 
+    text-align: end;
+    margin: 10px;
+}
+
+.container-text-slider {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    height: 250px;
+    width: 300px;
+    margin: 40px;
+    z-index: 3;
+}
+
 .wrapper {
     position: relative;
     display: flex;
@@ -85,6 +153,7 @@ textarea:focus-visible {
     width: 100vw;
     //background: url(../images/tier-list-page-bgc.png) 50%;
     animation: infinite 125s slider_;
+    background: #000000cc;
 }
 
 .navigation-bar {
@@ -94,7 +163,7 @@ textarea:focus-visible {
     align-items: center;
     padding: 5px;
     z-index: 2;
-    background: #0000005d;
+    background: #000000e3;
     border-bottom: .5px solid white;
 }
 
@@ -112,7 +181,6 @@ textarea:focus-visible {
     flex-direction: column;
 
 }
- 
 
 @media (min-width: 599px) {
 
@@ -138,9 +206,9 @@ textarea:focus-visible {
 
 .blur {
     position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background: #000000c7;
+    height: 100%;
+    width: 100%;
+    background: #00000085;
     z-index: 1;
 }
 
