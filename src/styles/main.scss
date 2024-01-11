@@ -70,12 +70,17 @@ textarea:focus-visible {
     outline: 0;
   }
 
-.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+.muiRenderFixedEl {
     color: white !important;
 }
 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-    color: white !important;
+.SelectorThumbnail {
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
 }
 
 .css-1k86apy-MuiImageList-root {
@@ -109,6 +114,8 @@ textarea:focus-visible {
     justify-content: flex-end;
     align-items: center;
     background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
 }

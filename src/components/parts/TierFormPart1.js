@@ -120,6 +120,8 @@ const TierFormPart1 = ({
                 alt={item.title}
                 loading="lazy"
               />
+
+            <input className='SelectorThumbnail' onChange={handleChange} accept='any' style={{ position: 'absolute', overflow: 'hidden', opacity: 0 }} type="file"/>
               <ImageListItemBar
                 sx={{
                   background:
@@ -134,7 +136,6 @@ const TierFormPart1 = ({
                     aria-label={`star ${item.title}`}
                   >
                     <WallpaperIcon />
-                    <input onChange={handleChange} accept='any' style={{ position: 'absolute', overflow: 'hidden', opacity: 0 }} type="file"/>
                   </IconButton>
                 }
                 actionPosition="left"
@@ -173,13 +174,14 @@ const TierFormPart1 = ({
 
  <div style={{ width: '90%', margin: '10px' }}>
 <FormControl fullWidth>
-  <InputLabel className="site-label">Kategoria</InputLabel>
+  <InputLabel className="site-label muiRenderFixedEl">Kategoria</InputLabel>
   <Select
     value={TierCategory}
     onChange={(e) => setTierCategory(e.target.value)}
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     color="secondary" 
+    className='muiRenderFixedEl'
   >
 {TierListCategories.map(((item) => <MenuItem disabled={item.set} value={item.opt}>{item.opt}</MenuItem>))}
   </Select>
