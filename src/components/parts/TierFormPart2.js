@@ -59,7 +59,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
         headers: { 
           'Content-Type': 'application/json', 
          },
-      }).then(res => res.json()).then(data => console.log(data)))
+      }).then(res => res.json()).then(data => data))
   }
 
   const AddNewBlockToArray = () => {
@@ -87,7 +87,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
       (err) => console.log(err),
       () => { 
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
+          //console.log(url);
           toast.info("File uploaded"); 
           setImageToShow(url)
         });
