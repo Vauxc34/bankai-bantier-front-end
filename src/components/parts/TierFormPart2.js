@@ -54,7 +54,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
       headers: { 'Content-Type': 'application/json', },
       body: JSON.stringify({ "blocks": newAddedBlocks })}; 
       fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, requestOptions)
-      .then(response => response.json()).then(data => console.log(data)).then(fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, { 
+      .then(response => response.json()).then(data => data).then(fetch(`${process.env.REACT_APP_IMPORTANT_LINK}lists/${location.pathname.split('/')[2]}`, { 
         method: 'GET',
         headers: { 
           'Content-Type': 'application/json', 
@@ -195,6 +195,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     color="secondary" 
+    className='muiRenderFixedEl'
     defaultValue='S'
     value={Description} onChange={(e) => setDescription(e.target.value)} 
   >
@@ -209,7 +210,7 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
         </div>     
         <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}> 
           <ImageButton focusRipple  style={{  width: '100%', }}  >
-            <ImageSrc style={{ backgroundImage: `url(${imageToShow})`, backgroundRepeat: 'no-repeat' }} />
+            <ImageSrc style={{ backgroundImage: `url(${imageToShow})`, backgroundRepeat: 'no-repeat', backgroundPosition: '50% 50%', backgroundSize: 'cover' }} />
             <ImageBackdrop className="MuiImageBackdrop-root" />
             <input 
           className="img-selector"
@@ -246,15 +247,15 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
 
       <div key={key} className='tier-addons'>  
 
-      <div className='container-flex' style={{ justifyContent: 'space-evenly', alignItems: 'center', width: '100%' }}>
+      <div className='container-flex' style={{ justifyContent: 'space-evenly', alignItems: 'center', width: '100%', overflow: 'hidden', flexWrap: 'wrap' }}>
       <h2 style={{ margin: '10px' }}>{item.title}</h2>
       <h1>{item.description}</h1>
       </div>
  
       <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
 
-<ImageButton focusRipple  style={{  width: '100%', }}  >
-    <ImageSrc style={{ backgroundImage: `url(${item.image})`, backgroundRepeat: 'no-repeat' }} />
+    <ImageButton focusRipple  style={{  width: '100%', }}  >
+    <ImageSrc style={{ backgroundImage: `url(${item.image})`, backgroundRepeat: 'no-repeat', backgroundPosition: '50% 50%', backgroundSize: 'cover' }} />
     <ImageBackdrop className="MuiImageBackdrop-root" />
     
     <ImageD>
@@ -274,9 +275,8 @@ const TierFormPart2 = ({ IdList, TierName, TierDesc, TierCategory, Image, toast 
       </Typography>
     </ImageD>
   </ImageButton>
-    </Box>  
-      
-    {/*<Button sx={{ margin: '10px' }} variant="contained" color='error' startIcon={<MeetingRoomIcon />}>Usun</Button>*/}
+      </Box>  
+       
 
       </div>
 

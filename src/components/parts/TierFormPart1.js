@@ -81,7 +81,6 @@ const TierFormPart1 = ({
         });
       }
     );
-   
 
   }
 
@@ -114,7 +113,8 @@ const TierFormPart1 = ({
           const rows = item.featured ? 2 : 1;
   
           return (
-            <ImageListItem style={{ height: 'unset' }} key={item.img} cols={cols} rows={rows}>
+            <ImageListItem style={{ 
+              height: 'unset' }} key={item.img} cols={cols} rows={rows}>
               <img
                 {...srcset(IsImageSetted == false ? 'https://placehold.co/600x400/purple/white/?font=roboto' : TierlistThumbnail, 150, 100, rows, cols)}
                 alt={item.title}
@@ -201,6 +201,7 @@ const TierFormPart1 = ({
  
   <InputLabel style={{ margin: '10px' }} className="site-label">Opis listy</InputLabel>
 <textarea
+maxLength={300}
 style={{ resize: 'vertical' }} 
 value={TierDesc}
 onChange={(e) => setTierDesc(e.target.value)}/>  
