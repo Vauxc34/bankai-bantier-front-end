@@ -68,10 +68,22 @@ textarea:focus {
  
 textarea:focus-visible {
     outline: 0;
-  }
+}
 
 .muiRenderFixedEl {
     color: white !important;
+}
+
+.mobile-buttons {
+    display: flex;
+}
+
+.mobile-buttons- {
+    display: flex;
+}
+
+.desktop-container {
+    display: none;
 }
 
 .SelectorThumbnail {
@@ -189,10 +201,58 @@ textarea:focus-visible {
 
 }
 
+.container-smallest {
+    display: none;
+}
+
+.desktop-container-- {
+    display: none;
+}
+
+.mobile-buttons-- {
+    display: block;
+}
+
 @media (min-width: 599px) {
 
     .huge-container {
         flex-direction: row;
+    }
+
+    .mobile-buttons {
+        display: none;
+    }
+
+    .mobile-buttons- {
+        display: none;
+    }
+
+    .mobile-buttons-- {
+        display: none;
+    }
+
+    .desktop-container {
+        display: flex;
+    }
+
+    .desktop-container-- {
+        display: block;
+    }
+
+    .range-for-a-roll-up {
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 374px) {
+
+    .container-smallest {
+        display: flex;
+    }
+
+    .mobile-buttons {
+        display: none;
     }
 
 }
@@ -200,6 +260,67 @@ textarea:focus-visible {
 .logo-app {
     height: 100px;
 }
+
+input.range-for-a-roll-up[type="range"] {
+    background: transparent;
+}
+
+.roll-up {
+    bottom: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 7.5px 15px;
+    border: unset;
+    z-index: 2;
+    right: 50%;
+    height: 500px;
+}
+
+.range-for-a-roll-up {
+    -webkit-appearance: none;
+    display: flex;
+    rotate: 270deg;
+    width: 500px;
+    position: absolute;
+    bottom: 245px;
+}
+
+.range-for-a-roll-up::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 75px;
+    background: white;
+    background-size: cover;
+    border-bottom-right-radius: 35%;
+    border-top-right-radius: 35%;
+    cursor: pointer;
+    z-index: -3;
+  }
+
+
+/* .range-for-a-roll-up::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 100vw;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: darkgrey;
+    color: red;
+    padding: 120px;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }*/
+
+
 
 @keyframes slider_ {
  0% {

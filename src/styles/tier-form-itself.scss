@@ -154,13 +154,7 @@ cursor: pointer;
     height: 100vh;
     //background: #fff; 
 }
-
-.-first-panel- { 
-}
-
-.-last-panel- { 
-}
-
+ 
 .block-itself {
     display: flex;
     justify-content: center;
@@ -182,9 +176,6 @@ cursor: pointer;
     position: relative;
     display: flex; 
     background: linear-gradient(#0c0b0bb0 75%, #000);
-}
-
-.-first { 
 }
 
 .-second {
@@ -220,7 +211,7 @@ cursor: pointer;
     bottom: 0;
     right: 0;
     height: 100vh;
-    width: 36vh;
+    width: 300px;
     border-left: 2px solid #fff;
     background: #000000cc;
     z-index: 2;

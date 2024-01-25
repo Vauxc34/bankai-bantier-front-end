@@ -73,7 +73,6 @@ export default function Loading() {
 
   }
 
-
   useEffect(() => {
 
     GetAllLists()
@@ -88,7 +87,10 @@ export default function Loading() {
       <img className='logo-app' src={LogoApp} ></img>
 
 
-      <div className='container-spaced'>
+      <div className='container-spaced desktop-container'>
+
+    
+
       <Link to="/stworz-tier-liste/twoja-nowa-lista">
       <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}>
       Stworz wlasna liste
@@ -100,6 +102,38 @@ export default function Loading() {
       <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<SearchIcon />}>
       Znajdź swoją tier listę
       </Button>
+      </Link> 
+      </div>
+
+      <div className='mobile-buttons'>
+
+    
+
+      <Link to="/stworz-tier-liste/twoja-nowa-lista">
+      <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}>
+      Tworz
+      </Button>
+      </Link> 
+
+
+      <Link to="/znajdz-liste/">
+      <Button sx={{ margin: '10px' }} variant="contained" color='secondary' startIcon={<SearchIcon />}>
+      Szukaj
+      </Button>
+      </Link> 
+      </div>
+
+      <div className='container-smallest'>
+
+    
+
+      <Link to="/stworz-tier-liste/twoja-nowa-lista">
+      <Button sx={{ margin: '10px 5px' }} variant="contained" color='secondary' startIcon={<CreateIcon />}></Button>
+      </Link> 
+
+
+      <Link to="/znajdz-liste/">
+      <Button sx={{ margin: '10px 5px' }} variant="contained" color='secondary' startIcon={<SearchIcon />}></Button>
       </Link> 
       </div>
 
