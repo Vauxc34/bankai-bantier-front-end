@@ -152,7 +152,6 @@ textarea:focus-visible {
     flex-direction: column;
     margin: 0px 4em;
     z-index: 3;
-    margin-bottom: 13em;
 }
 
 .wrapper {
@@ -198,7 +197,8 @@ textarea:focus-visible {
     position: relative;
     display: flex;
     flex-direction: column;
-
+    overflow: hidden;
+    overflow-x: scroll;
 }
 
 .container-smallest {
@@ -211,6 +211,29 @@ textarea:focus-visible {
 
 .mobile-buttons-- {
     display: block;
+}
+
+.MobileIcon {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    right: 15px;
+    top: 15px;
+    font-size: 25px;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    z-index: 4;
+    border-radius: 50%;
+    background: red;
+    color: #fff;
+    cursor: pointer;
+}
+
+.SettedSettingTier {
+    width: 200vw;
+    height: 100px;
+    overflow: scroll;
 }
 
 @media (min-width: 599px) {
@@ -228,7 +251,7 @@ textarea:focus-visible {
     }
 
     .mobile-buttons-- {
-        display: none;
+        display: none !important;
     }
 
     .desktop-container {
@@ -241,6 +264,16 @@ textarea:focus-visible {
 
     .range-for-a-roll-up {
         display: none !important;
+    }
+
+    .MobileIcon {
+        top: unset !important;
+        bottom: 15px;
+    }
+
+    .SettedSettingTier {
+        width: 100vw;
+        height: 100px;
     }
 
 }
@@ -274,7 +307,7 @@ input.range-for-a-roll-up[type="range"] {
     padding: 7.5px 15px;
     border: unset;
     z-index: 2;
-    right: 50%;
+    width: 100%;
     height: 500px;
 }
 
@@ -287,40 +320,39 @@ input.range-for-a-roll-up[type="range"] {
     bottom: 245px;
 }
 
+.arrow {
+    pointer-events: none;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    margin-top: -20.5px;
+  }
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.unsettedVisibility {
+    z-index: 2;
+}
+
+.settedVisibility {
+    z-index: 0;
+}
+
 .range-for-a-roll-up::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 50px;
     height: 75px;
     background: white;
-    background-size: cover;
     border-bottom-right-radius: 35%;
     border-top-right-radius: 35%;
     cursor: pointer;
     z-index: -3;
-  }
-
-
-/* .range-for-a-roll-up::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    height: 100vw;
-    background: #fff;
-    cursor: pointer;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: darkgrey;
-    color: red;
-    padding: 120px;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
-  }*/
-
-
+}
 
 @keyframes slider_ {
  0% {

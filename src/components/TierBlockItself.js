@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function TierBlockItself(props) {
-
 
     const dragStart = e => {
         const target = e.target
@@ -21,10 +20,10 @@ export default function TierBlockItself(props) {
       <>
         <div 
         id={props.id}
-        className={props.className}
+        className={`tier-block`}
         draggable={props.draggable}
         onDragStart={dragStart}
-        onDragOver={dragOver}
+        onDragOver={dragOver} 
         >
             { props.children }
         </div>

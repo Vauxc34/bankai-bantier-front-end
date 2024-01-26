@@ -17,6 +17,7 @@ export default function TierBlockPanelItself2(props) {
     
       }
     
+
       
 
   return (
@@ -24,7 +25,7 @@ export default function TierBlockPanelItself2(props) {
     <div 
     id={props.id}
     onDrop={drop}
-    onDragOver={dragOver} 
+    onDragOver={dragOver}
     style={{ flexWrap: 'wrap' }} 
     className='block-panel -first-panel-'> { props.children } 
     </div>
