@@ -74,6 +74,29 @@ textarea:focus-visible {
     color: white !important;
 }
 
+.tutorialBlur {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #00000097;
+    z-index: 5;
+}
+
+.ArrowTutorial {
+    top: 60px;
+    position: fixed;
+    height: 300px;
+    width: 100px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Down_arrow.svg/823px-Down_arrow.svg.png');
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 12;
+}
+
 .mobile-buttons {
     display: flex;
 }
@@ -130,6 +153,10 @@ textarea:focus-visible {
     background-size: cover;
     height: 100vh;
     width: 100vw;
+}
+
+.heightFixTier {
+    overflow: hidden;
 }
 
 .Slide_of_list h1 {  
@@ -267,7 +294,7 @@ textarea:focus-visible {
 
     .MobileIcon {
         top: unset !important;
-        bottom: 15px;
+        bottom: 20px;
     }
 
     .SettedSettingTier {
@@ -351,6 +378,18 @@ input.range-for-a-roll-up[type="range"] {
     border-top-right-radius: 35%;
     cursor: pointer;
     z-index: -3;
+}
+
+::-webkit-scrollbar {
+background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+background: transparent;
 }
 
 @keyframes slider_ {
